@@ -110,7 +110,8 @@ module FlatSharp where
     Codisc-= : {l1 : Level} {A : Set l1} {a1 a2 : A} → Codisc A → Codisc (a1 == a2) 
     Codisc-Codisc : {l1 : Level} → Codisc (Σ \ (A : Set l1) → Codisc A)
 
-    -- you can put something in the crisp context if the conclusion is codiscrete
+    -- you can put something in the crisp context if the conclusion is codiscrete:
+    -- judgemental version of "Codiscrete types see counit : ♭ A → A as an equivalence"
     promote : {l1 :{♭} Level} {l2 : Level} {A :{♭} Set l1} 
               (C : A → Set l2) → 
               ((x : A) → Codisc (C x))
@@ -196,8 +197,6 @@ module FlatSharp where
   fs4 : {l :{♭} Level} {A :{♭} Set l} (x : ♭ (♯ A)) → fs2 (fs1 x) == x
   fs4 (♭i x) = apc ♭i (! ( (♯η-crisp x) ))
 
-  -- ♯ (♯ A) ≅ ♯ A follows from the elim
-  
   -- ♯ (♭ A) ≅ ♯ A 
 
   sf1 : {l :{♭} Level} {A :{♭} Set l} → ♯ (♭ A) → ♯ A
@@ -217,6 +216,8 @@ module FlatSharp where
   sf4 : {l :{♭} Level} {A :{♭} Set l} → (x : ♯ (♭ A)) → sf2 (sf1 x) == x
   sf4 = ♯-elim _ (\ _ → Codisc-= (Codisc-♯)) (promote _ (\ _ → Codisc-= (Codisc-♯)) (♭elim-crisp _ {!similar!}) )
 
+  -- ♯ (♯ A) ≅ ♯ A follows from the elim
+  
   -- some things that would use the ♯ formation rule promotion
 
   Codiscs : {l : Level} → Set (lsuc l)
