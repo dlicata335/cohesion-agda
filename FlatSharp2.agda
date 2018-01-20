@@ -203,6 +203,10 @@ module FlatSharp2 where
                 → (f : (x :{♭} A) → ♯ (C x))
                 → (x :{♭} A) → (promote C f x) == (f x)
 
+    Code : {l : Level} {A : Set l} (x y : ♯ A) → Set l
+    Code = ♯-elim _ (\ x → ♯-elim _ \ y → ♯i x == ♯i y) 
+
+
     -- internalized
 
     sf1 : {l :{♭} Level} {A :{♭} Set l} → ♯ (♭ A) → ♯ A

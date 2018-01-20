@@ -127,7 +127,7 @@ module FlatSharp where
   postulate
     ♯  : {l : Level} (A : Set l) → Set l
     Codisc-♯ : {l : Level} {A : Set l} → Codisc(♯ A)
-    ♯i : {l : Level} {A : Set l} → A → ♯ A
+    ♯i :{♭} {l : Level} {A : Set l} → A → ♯ A
     ♯e : {l :{♭} Level} {A :{♭} Set l} → (x :{♭} (♯ A)) → A
     ♯β : {l :{♭} Level} {A :{♭} Set l} (x :{♭} A) → Rewrite (♯e (♯i x)) x
     ♯η-crisp : {l :{♭} Level} {A :{♭} Set l} (x :{♭} ♯ A) → x == ♯i (♯e x)
